@@ -1,4 +1,6 @@
 import { Colors } from "discord.js";
+import dotenv from "dotenv";
+dotenv.config();
 
 const settings = {
   TOKEN: process.env.token || "Bot_Token",
