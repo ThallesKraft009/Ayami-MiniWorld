@@ -2,6 +2,9 @@ import { ClusterManager } from 'discord-hybrid-sharding'
 
 import c from "colors";
 
+import dotenv from "dotenv";
+dotenv.config();
+
 const manager = new ClusterManager(`index.js`, {
     totalShards: 5,
     shardsPerClusters: 5,
