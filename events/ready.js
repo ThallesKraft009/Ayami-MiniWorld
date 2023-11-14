@@ -11,7 +11,7 @@ export default {
   run: async (client) => {
     console.log(c.green(`> ${client.user.tag} is Ready !!`));
     client.user.setActivity({
-      name: `MiniWorld`,
+      name: `Mini World: CREATA`,
       type: ActivityType.Watching,
     });
 
