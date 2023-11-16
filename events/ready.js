@@ -27,5 +27,6 @@ export default {
 
     connect(process.env.mongo)
 
+    
   },
 };
