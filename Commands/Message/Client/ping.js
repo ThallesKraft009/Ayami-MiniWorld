@@ -40,7 +40,7 @@ fetch(`https://api.squarecloud.app/v2/apps/${client.config.hospedagem.apiId}`, o
       content: "Ping?"
     }).then(async(x) => {
       x.edit({
-        content: `🏓 Pong! (📡 Cluster: **\`${data.response.app.cluster}\`**, Shard: **\`${shard}/5\`**)\n⏰ | Gateway Ping: **\`${gatewayPing}ms\`**\n⚡ | API Ping: **\`${apiPing}ms\`**`
+        content: `🏓 Pong! (📡 Cluster: **\`null\`**, Shard: **\`${shard}/5\`**)\n⏰ | Gateway Ping: **\`${gatewayPing}ms\`**\n⚡ | API Ping: **\`${apiPing}ms\`**`
       })
     })
   })
