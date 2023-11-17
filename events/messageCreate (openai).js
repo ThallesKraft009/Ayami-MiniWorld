@@ -1,4 +1,4 @@
-import { PermissionsBitField, codeBlock, ChannelType } from "discord.js";
+import { PermissionsBitField, codeBlock, ChannelType, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } from "discord.js";
 import { cooldown } from "../handlers/functions.js";
 import fetch from 'node-fetch'
 
@@ -10,6 +10,7 @@ export default {
 
   run: async (client, message) => {
 
+    let canal = client.channels.cache.get("1174989607616643072")
     
     if (message.channel.type !== 0) return;
     if (message.author.bot) return;
@@ -56,6 +57,28 @@ const dadosRespostaAPI = await respostaAPI.json();
 
     const numeroQuebrasDeLinha = respostaBot.split("\n").length - 1;
 
+    let embed = new EmbedBuilder()
+    .setTitle("Utilização da OpenAI")
+    .addFields({
+      name: "Pergunta",
+      value: `${args.join(" ")}`
+    },{
+      name: "Canal",
+      value: `${message.channel}`
+    })
+    .setColor("Blue")
+    .setTimestamp()
+    .setAuthor({name: `${message.author.globalName}`, iconURL: `${message.author.displayAvatarURL()}`})
+
+    let data;
+    let row = new ActionRowBuilder()
+			.addComponents(
+        new ButtonBuilder()
+        .setLabel("Mensagem")
+        .setStyle(ButtonStyle.Link)
+        .setURL(`https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id}`)
+      )
+
     if (respostaBot.length > 550 || numeroQuebrasDeLinha > 5) {
       const thread = await message.startThread({
         name: `${args.join(" ")}`,
@@ -72,5 +95,10 @@ const dadosRespostaAPI = await respostaAPI.json();
         content: `${respostaBot}`
       })
     }
+
+    canal.send({
+      embeds: [embed],
+      components: [row]
+    })
   }
 }
