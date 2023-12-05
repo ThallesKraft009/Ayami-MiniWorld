@@ -36,7 +36,8 @@ export default {
   }
 
     if (data.number_random === 0)  {
-      data.number_random = Math.floor(Math.random() * (50 - 20 + 1)) + 20;
+      data.number_random = 50
+      //Math.floor(Math.random() * (50 - 20 + 1)) + 20;
 
     // data.number_random = 5
       data.time = ms("5m")
@@ -58,7 +59,7 @@ export default {
        data.i = data.i + 1
     }
 
-  
+  console.log(`MSG MÁXIMA = 50, TOTAL ATÉ AGORA = ${data.i}`);
     
  //   console.log("i = ", data.i)
     data.users[message.author.id] = true
