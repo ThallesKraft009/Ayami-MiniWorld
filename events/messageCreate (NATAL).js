@@ -83,7 +83,7 @@ export default {
       console.log("Antes da escolha do jogo:", data.ocorrendo, data.i, data.number_random);
 let jogoEscolhido;
 if (!data.ocorrendo) {
-  let games = ["corrida", "pergunta", "música", "tesouro"];
+  let games = ["corrida", "música", "tesouro"];
   jogoEscolhido = games[Math.floor(Math.random() * games.length)];
   console.log("Jogo escolhido:", jogoEscolhido);
   data.ocorrendo = true;

@@ -11,6 +11,8 @@ export default {
   run: async (client, message) => {
 
     let canal = client.channels.cache.get("1174989607616643072")
+
+      if (true) return;
     
  //   if (message.channel.type !== 0) return;
   //  console.log(message.channel.type)
