@@ -3,22 +3,32 @@ import { Schema, model } from 'mongoose';
 
 const userset = new Schema({
   userID: { type: String },
-
   uid: { type: String, default: "Não definido" },
   estrelas: { type: Number, default: 0 },
+  msg: {
+    diarias: { type: Number, default: 0 },
+    semanais: { type: Number, default: 0 },
+    mensais: { type: Number, default: 0 },
+    anuais: { type: Number, default: 0 },
+    total: { type: Number, default: 0 }
+  },
   pontuacao: { type: Number, default: 0 },
   jogos: { type: Array, default: [] },
   skin: { type: String, default: "<:kaka:1147585577298972745>"},
+  pontos_natal: { type: Number, default: 0 },
 
   perfil: {
-    sobremim: { type: String, default: "Mude seu so bremim utilizando mw!sobremim"},
-  slot_maps: { type: Number, default: 0},
-    mapas: { type: Array, default: [] },
-    mapas_total: { type: Number, default: 0 },
+    sobremim: { type: String, default: "Mude seu sobremim utilizando mw!sobremim"},
     banner: { type: String, default: null },
     banners: { type: Array, default: [] },
     fundo: { type: String, default: "https://imgur.com/rz7Doar.png" }
   },
+
+  mapas: { type: Array, default: [{
+    label: "Enviar Mapa",
+    description: "Clique para enviar seu mapa",
+    value: "0"
+  }]},
 
   pascoa: {
     ovo_azul: { type: Number, default: 0 },

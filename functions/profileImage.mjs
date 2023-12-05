@@ -1,5 +1,5 @@
 import Canvas from "canvas";
-import { AttachmentBuilder } from "discord.js";
+import { AttachmentBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ActionRowBuilder } from "discord.js";
 
 const Profile = async(member, msg, db, isInteraction) => {
   
@@ -87,8 +87,17 @@ if (perfil1 === undefined) perfil1 = 'https://imgur.com/rz7Doar.png'
             name: "perfil.png"
           }
         ); 
+      
 
-    
+  let data = db.mapas;
+  let mapas = new ActionRowBuilder()
+  .addComponents(
+    new StringSelectMenuBuilder()
+    .setCustomId("mapas")
+    .setPlaceholder("Lista de Mapas")
+    .addOptions(data)
+  );
+  
 if (!isInteraction){
    return await msg.reply({
     content: `${msg.author}`,

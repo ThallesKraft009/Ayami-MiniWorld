@@ -1,9 +1,9 @@
-import {client} from '../index.js';
+import { client } from '../index.js';
 
 async function Collector(func) {
   client.on("interactionCreate", async (i) => {
     try {
-    await func(i);
+       await func(i);
     } catch (err) {
       console.log(err)
       i.reply({

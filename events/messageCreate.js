@@ -1,5 +1,6 @@
 import { PermissionsBitField } from "discord.js";
 import { cooldown } from "../handlers/functions.js";
+import db from '../mongodb/user.js'
 
 /**
  * @type {import("..").EventHandler}
@@ -9,6 +10,26 @@ export default {
 
   run: async (client, message) => {
     // code
+    let userdb = await db.findOne({
+         userID: message.author.id
+     })
+      
+     if(!userdb){
+         const newuser = new db({ userID: message.author.id })
+         await newuser.save();
+         
+         userdb = await db.findOne({ userID: message.author.id })
+     }
+
+    let n = Number(`${userdb.msg.total}`);
+    if (!n) n = 0
+    await db.updateOne({
+         userID: message.author.id
+     }, { $set: {
+         "msg.total": n + 1
+     }
+     })
+  //  console.log(n)
     try {
     if (message.author.bot || !message.guild || !message.id) return;
     let prefix = client.config.PREFIX;

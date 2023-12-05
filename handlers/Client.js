@@ -7,8 +7,9 @@ import {
 } from "discord.js";
 import settings from "../settings/config.js";
 import { ClusterClient, getInfo } from 'discord-hybrid-sharding'
-import { Natal } from "../ServerEvents/2023/natal.js";
-
+import { PlayerMusic } from "../functions/Player.mjs";
+//import { Natal } from "../ServerEvents/2023/natal.js";
+//import { Logs} from "../functions/events.js";
 export class Bot extends Client {
   constructor() {
     super({
@@ -54,7 +55,11 @@ export class Bot extends Client {
     this.mcommands = new Collection();
     this.cooldowns = new Collection();
     this.events = new Collection();
-    this.Natal = new Natal(this);
+    
+    //Player Music
+    this.player = PlayerMusic(this)
+ //   this.Natal = new Natal(this);
+   // this.Logs = new Logs(this);
   }
 
   async build(token) {

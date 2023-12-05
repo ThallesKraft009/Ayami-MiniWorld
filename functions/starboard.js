@@ -1,8 +1,8 @@
 import { client } from "../index.js";
 
 let info = {};
-info.emoji = "⭐";
-info.channel = "751536510347509801";
+info.emoji = "🔥";
+info.channel =  "1174084824135376966"//"751536510347509801";
 
 import db from "../mongodb/user.js";
 import msgDB from "../mongodb/msg.js";
@@ -103,7 +103,7 @@ if (msg.author.id !== reagiu.id){
          return true;
        })
 
-       
+       client.logs.estrelinhas(0, msg.author.id, estrelinhas+1);
 
        if (v.length === 0 || v.length < 0) {
 
@@ -245,6 +245,9 @@ const removeReaction = async(reaction, user) => {
 
 
       await a.delete();
+      
+      client.logs.estrelinhas(1, msg.author.id, userdb.estrelas-1)
+
 
       await db.updateOne({
          userID: msg.author.id
