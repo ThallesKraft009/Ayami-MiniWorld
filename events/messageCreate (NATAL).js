@@ -35,7 +35,7 @@ export default {
          userdb = await db.findOne({ userID: message.author.id })
   }
 
-    if (data.number_random === 0)  {
+    if (data.number_random === 0 && !data.ocorrendo){
       data.number_random = 50
       //Math.floor(Math.random() * (50 - 20 + 1)) + 20;
 
@@ -294,9 +294,9 @@ collector.on("collect", async(reaction, user) => {
       content: `<@${user.id}> venceu a corrida de trenó!`
     })
 
-  data.i = 0
-  data.number_random = 0
-  data.ocorrendo = false
+  data.i = 0;
+  data.number_random = 0;
+  data.ocorrendo = false;
     console.log("Corrida acabou!", data.ocorrendo, data.i, data.number_random)
 
     collector.stop()
@@ -323,7 +323,9 @@ collector.on("collect", async(reaction, user) => {
            data.ocorrendo = false;
            data.i = 0;
            data.number_random = 0;
-                  
+    
+                    data.i = 0;
+      
                       
   }
 })
