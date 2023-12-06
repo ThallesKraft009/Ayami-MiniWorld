@@ -19,6 +19,7 @@ export default {
   run: async(client, message) => {
 
   if (message.author.bot) return;
+  if (message.channel.id === "767888039552352297") return;
     
     data.timestamp = new Date();
 

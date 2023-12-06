@@ -12,7 +12,7 @@ export default {
 
     let canal = client.channels.cache.get("1174989607616643072")
 
-      if (true) return;
+  //    if (true) return;
     
  //   if (message.channel.type !== 0) return;
   //  console.log(message.channel.type)
@@ -55,6 +55,8 @@ export default {
         })
       });
 const dadosRespostaAPI = await respostaAPI.json();
+
+      console.log(dadosRespostaAPI)
 
     const respostaBot = dadosRespostaAPI.choices[0].message.content;
 
