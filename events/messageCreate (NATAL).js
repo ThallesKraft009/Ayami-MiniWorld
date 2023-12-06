@@ -36,7 +36,7 @@ export default {
   }
 
     if (data.number_random === 0 && !data.ocorrendo){
-      data.number_random = 50
+      data.number_random = 30
       //Math.floor(Math.random() * (50 - 20 + 1)) + 20;
 
     // data.number_random = 5
@@ -50,7 +50,8 @@ export default {
         data.i = 0
         data.number_random = 0
         data.users = []
-      }, ms('50s'))
+        data.ocorrendo = false
+      }, ms('5m'))
     }
 
 
@@ -677,7 +678,8 @@ const dadosRespostaAPI = await respostaAPI.json();
       data.i = 0
       data.number_random = 0
       data.users = []
-    }, ms("50s"))
+      data.ocorrendo = false
+    }, ms("5m"))
   }
 }
 
