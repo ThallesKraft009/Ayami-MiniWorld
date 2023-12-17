@@ -1,8 +1,8 @@
 import { client } from "../index.js";
 
 let info = {};
-info.emoji = "🔥";
-info.channel =  "1174084824135376966"//"751536510347509801";
+info.emoji = "⭐";
+info.channel =  "751536510347509801"//"751536510347509801";
 
 import db from "../mongodb/user.js";
 import msgDB from "../mongodb/msg.js";

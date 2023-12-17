@@ -1,5 +1,5 @@
 import { PermissionFlagsBits } from "discord.js";
-
+//import { db } from "../../../mongodb/user.js"
 /**
  * @type {import("../../../index.js").Mcommand}
  */

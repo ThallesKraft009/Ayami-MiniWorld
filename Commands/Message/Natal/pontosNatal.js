@@ -36,6 +36,9 @@ export default {
          userdb = await db.findOne({ userID: user.id })
   }
 
+   // userdb.pontos_natal = userdb.pontos_natal - 30;
+  //  await userdb.save()
+
     const rankedUsers = await db.find({
               "pontos_natal": { 
                 $gt: 0 
