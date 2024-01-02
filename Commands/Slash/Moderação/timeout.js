@@ -39,7 +39,7 @@ module.exports = {
       let data = new Date();
       data.setMilliseconds(data.getMilliseconds() + tempo);
 
-      await DiscordRequest(`/guilds/1088390786690846752/members/${userId}`, {
+      await DiscordRequest(`/guilds/751534674723078174/members/${userId}`, {
         method: "PATCH",
         body: {
           communication_disabled_until: data.toISOString()
