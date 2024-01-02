@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+const { Schema, model } = require("mongoose");
 
 const msg = new Schema({
   msgID: { type: String },
@@ -7,4 +7,4 @@ const msg = new Schema({
   estrutura: { type: Array }
 })
 
-export default model("Mw-Messages-Estrelas", msg);
+module.exports = model("Mw-Messages-Estrelas", msg);

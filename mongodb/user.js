@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+const { Schema, model } = require('mongoose');
 
 
 const userset = new Schema({
@@ -6,12 +6,9 @@ const userset = new Schema({
   uid: { type: String, default: "Não definido" },
   estrelas: { type: Number, default: 0 },
   msg: {
-    diarias: { type: Number, default: 0 },
-    semanais: { type: Number, default: 0 },
-    mensais: { type: Number, default: 0 },
-    anuais: { type: Number, default: 0 },
-    total: { type: Number, default: 0 }
+    de_2024: { type: Number, default: 0 }
   },
+  
   pontuacao: { type: Number, default: 0 },
   jogos: { type: Array, default: [] },
   skin: { type: String, default: "<:kaka:1147585577298972745>"},
@@ -97,4 +94,4 @@ const userset = new Schema({
 });
 
 
-export default model("Mw-Usuarios", userset); 
+module.exports = model("Mw-Usuarios", userset); 
