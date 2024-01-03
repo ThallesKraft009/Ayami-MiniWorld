@@ -5,6 +5,19 @@ module.exports = {
   message: {
     response: (channelId) => {
       return `/channels/${channelId}/messages`
+    },
+
+    reaction: {
+      remove: (channelId, messageId, emoji) => {
+        return `/channels/${channelId}/messages/${messageId}/reactions/${emoji}`
+      }
+    }
+  },
+
+  //////////////// CHANNEL ///////////////
+  channel: {
+    getMessage: (channelId, messageId) => {
+      return `/channels/${channelId}/messages/${messageId}`
     }
   },
 
@@ -27,6 +40,10 @@ module.exports = {
 
     rolesGet: (guildId) => {
       return `/guilds/${guildId}/roles`
+    },
+
+    roleGet: (guildId, roleId) => {
+      return ``
     }
   },
 

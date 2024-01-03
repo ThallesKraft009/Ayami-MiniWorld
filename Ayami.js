@@ -28,3 +28,8 @@ await manager.connect();
 
 
 Ayami()
+
+process.on('uncaughtException', (err) => {
+  console.error('Erro não capturado:', err);
+  // Trate o erro ou encerre o processo, dependendo do caso.
+});

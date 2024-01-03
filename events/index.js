@@ -6,6 +6,8 @@ const fs = require("fs")
 const c = require("colors")
 const { Message } = require("./GUILD/messageCreate.js");
 const { Interaction } = require("./GUILD/interactionCreate.js");
+const { MessageReactionAdd } = require("./GUILD/messageReactionAdd.js");
+const { MessageReactionRemove } = require("./GUILD/messageReactionRemove.js");
 
 const commandsData = [];
 const commandsJson = [];
@@ -63,5 +65,9 @@ module.exports = async (data) => {
         return Message(data);
     } else if (t === "INTERACTION_CREATE") {
         return Interaction(data, commands);
+    } else if (t === "MESSAGE_REACTION_ADD"){
+        return MessageReactionAdd(data);
+    } else if (t === "MESSAGE_REACTION_REMOVE"){
+      return MessageReactionRemove(data);
     }
 };
