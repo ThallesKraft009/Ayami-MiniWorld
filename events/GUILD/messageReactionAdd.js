@@ -183,7 +183,7 @@ const MessageReactionAdd = async(data) => {
 
         msgdb.msg_bot_id = responseMsg.id
 
-        
+        await userdb.save();
       })
       }
 

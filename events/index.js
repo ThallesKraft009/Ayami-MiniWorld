@@ -8,7 +8,8 @@ const { Message } = require("./GUILD/messageCreate.js");
 const { Interaction } = require("./GUILD/interactionCreate.js");
 const { MessageReactionAdd } = require("./GUILD/messageReactionAdd.js");
 const { MessageReactionRemove } = require("./GUILD/messageReactionRemove.js");
-
+const { MuralDaVergonha, AutoMod } = require("./GUILD/AuditLog.js")
+const { MemberUpdate } = require("./GUILD/UserUpdate.js")
 const commandsData = [];
 const commandsJson = [];
 const commands = []
@@ -69,5 +70,11 @@ module.exports = async (data) => {
         return MessageReactionAdd(data);
     } else if (t === "MESSAGE_REACTION_REMOVE"){
       return MessageReactionRemove(data);
-    }
+    } else if (t === "GUILD_AUDIT_LOG_ENTRY_CREATE"){
+    return MuralDaVergonha(data);
+    } else if (t === "AUTO_MODERATION_ACTION_EXECUTION"){
+     return AutoMod(data);
+    } else if (t === "GUILD_MEMBER_UPDATE"){
+      return MemberUpdate(data);
+    } 
 };

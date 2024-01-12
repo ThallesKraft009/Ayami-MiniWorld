@@ -3,8 +3,10 @@ const { Schema, model } = require('mongoose');
 
 const userset = new Schema({
   userID: { type: String },
+  dmChannelId: { type: String, default: null },
   uid: { type: String, default: "Não definido" },
   estrelas: { type: Number, default: 0 },
+  timeout: { type: Boolean, default: false },
   msg: {
     de_2024: { type: Number, default: 0 }
   },
@@ -66,28 +68,46 @@ const userset = new Schema({
     mundo: { type: String, default: null },
     vida: { type: Number, default: 100 },
 
+    exploração_mundo: {
+      tempo: { type: Number, default: 0 },
+      terminou: { type: Boolean, default: false },
+      biomas: { type: Array, default: [] },
+      itens: { type: Array, default: []}
+    },
+
+    exploração_caverna: {
+      tempo: { type: Number, default: 0 },
+      terminou: { type: Boolean, default: false },
+      minerios: { type: Array, default: [] }
+    },
+
     blocos: {
       madeira: { type: Number, default: 0 },
       pedra: { type: Number, default: 0 },
       cobre: { type: Number, default: 0 },
-      ferro: { type: Number, default: 0 }
+      mithril: { type: Number, default: 0 }
     },
 
     itens: {
       gravetos: { type: Number, default: 0 },
-      fornalha: { type: String, default: "sem"}
+      fornalha: { type: String, default: "sem"},
+      tocha: { type: Number, default: 0 }
     },
 
-    picaretas: {
+    plantas: {
+      fibras_vegetais: { type: Number, default: 0 }
+    },
+
+    picareta: {
       pedra: { type: Array },
       cobre: { type: Array },
-      ferro: { type: Array }
+      mithril: { type: Array }
     },
 
     ingotes: {
         carvao: { type: Number, default: 0 },
         cobre: { type: Number, default: 0 },
-        ferro: { type: Number, default: 0 }
+        mithril: { type: Number, default: 0 }
     }
   }
   
