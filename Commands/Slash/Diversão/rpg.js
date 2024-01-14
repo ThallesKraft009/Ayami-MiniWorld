@@ -145,15 +145,232 @@ module.exports = {
         description: "Veja seu inventário!",
         type: 1
       }]
+    },{
+      name: "usar",
+      description: "Grupo de Comandos",
+      type: 2,
+      options: [{
+        name: "fornalha",
+        description: "Utilize sua fornalha pra fundir seus minérios",
+        type: 1,
+        options: [{
+          name: "minério",
+          description: "Qual minério você quer fundir?",
+          type: 3,
+          choices: [{
+            name: "Minério de Cobre",
+            value: "cobre"
+          },{
+            name: "Minério de Mithril",
+            value: "mithril"
+          }],
+          required: true
+        }]
+      }]
+    },{
+      name: "vender",
+      description: "Grupo de Comandos",
+      type: 2,
+      options: [{
+        name: "madeira",
+        description: "Venda todas as suas madeiras!",
+        type: 1
+      },{
+        name: "pedras",
+        description: "Venda todas as suas pedras!",
+        type: 1
+      },{
+        name: "cobre",
+        description: "Venda todos os seus cobres!",
+        type: 1
+      },{
+        description: "Venda todos os seus mithril",
+        name: "mithril",
+        type: 1
+      }]
     }]
   },
 
   run: async (interaction) => {
     let subCmd = interaction.data.options[0];
 
+    if (subCmd.name === "vender"){
+                        let userdb = await db.findOne({ userID: interaction.member.user.id });
+
+        if (!userdb) {
+          let newUser = new db({
+            userID: interaction.member.user.id
+          });
+
+          await newUser.save();
+
+          userdb = await db.findOne({
+            userID: interaction.member.user.id
+          });
+        }
+
+      if (userdb.rpg.mundo === null){
+        return await DiscordRequest(CALLBACK.interaction.response(interaction.id, interaction.token),{
+          method: "POST",
+          body: {
+            type: 4,
+            data: {
+              content: `Você ainda não criou um mundo! Utilize o comando </rpg criar mundo:12345>.`,
+              flags: 64
+            }
+          }
+        })
+      }
+
+      let cmd = subCmd.options[0];
+      if (cmd.name === "madeira"){
+        if (userdb.rpg.blocos.madeira === 0){
+          return await DiscordRequest(CALLBACK.interaction.response(interaction.id, interaction.token),{
+            method: "POST",
+            body: {
+              type: 4,
+              data: {
+                content: "Você não tem nenhuma madeira pra vender.",
+                flags: 64
+              }
+            }
+          })
+        } else {
+
+          let money = userdb.rpg.blocos.madeira;
+
+          userdb.economia.moedas += money;
+          
+          userdb.rpg.blocos.madeira -= userdb.rpg.blocos.madeira;
+
+          await userdb.save();
+
+          
+
+          await DiscordRequest(CALLBACK.interaction.response(interaction.id, interaction.token),{
+            method: "POST",
+            body: {
+              type: 4,
+              data: {
+                content: `Você vendeu todas as suas madeiras e ganhou ${money} mini moedas!`
+              }
+            }
+          })
+        }
+      }
+
+            if (cmd.name === "pedra"){
+        if (userdb.rpg.blocos.pedra === 0){
+          return await DiscordRequest(CALLBACK.interaction.response(interaction.id, interaction.token),{
+            method: "POST",
+            body: {
+              type: 4,
+              data: {
+                content: "Você não tem nenhuma pedra pra vender.",
+                flags: 64
+              }
+            }
+          })
+        } else {
+
+          let money = userdb.rpg.blocos.pedra;
+
+          userdb.economia.moedas += money;
+          
+          userdb.rpg.blocos.pedra -= userdb.rpg.blocos.pedra;
+
+          await userdb.save();
+
+          
+
+          await DiscordRequest(CALLBACK.interaction.response(interaction.id, interaction.token),{
+            method: "POST",
+            body: {
+              type: 4,
+              data: {
+                content: `Você vendeu todas as suas pedras e ganhou ${money} mini moedas!`
+              }
+            }
+          })
+        }
+            }
+
+            if (cmd.name === "cobre"){
+        if (userdb.rpg.ingotes.cobre === 0){
+          return await DiscordRequest(CALLBACK.interaction.response(interaction.id, interaction.token),{
+            method: "POST",
+            body: {
+              type: 4,
+              data: {
+                content: "Você não tem nenhum cobre pra vender.",
+                flags: 64
+              }
+            }
+          })
+        } else {
+
+          let money = userdb.rpg.ingotes.cobre * 2;
+
+          userdb.economia.moedas += money;
+          
+          userdb.rpg.ingotes.cobre -= userdb.rpg.ingotes.cobre;
+
+          await userdb.save();
+
+          
+
+          await DiscordRequest(CALLBACK.interaction.response(interaction.id, interaction.token),{
+            method: "POST",
+            body: {
+              type: 4,
+              data: {
+                content: `Você vendeu todos os seus cobres e ganhou ${money} mini moedas!`
+              }
+            }
+          })
+        }
+            }
+
+            if (cmd.name === "mithril"){
+        if (userdb.rpg.ingotes.mithril === 0){
+          return await DiscordRequest(CALLBACK.interaction.response(interaction.id, interaction.token),{
+            method: "POST",
+            body: {
+              type: 4,
+              data: {
+                content: "Você não tem nenhum mithril pra vender.",
+                flags: 64
+              }
+            }
+          })
+        } else {
+
+          let money = userdb.rpg.ingotes.mithril * 3;
+
+          userdb.economia.moedas += money;
+          
+          userdb.rpg.ingotes.mithril -= userdb.rpg.ingotes.mithril;
+
+          await userdb.save();
+
+          
+
+          await DiscordRequest(CALLBACK.interaction.response(interaction.id, interaction.token),{
+            method: "POST",
+            body: {
+              type: 4,
+              data: {
+                content: `Você vendeu todos os seus mithril e ganhou ${money} mini moedas!`
+              }
+            }
+          })
+        }
+            }
+    }
+
     if (subCmd.name === "membro"){
       let cmd = subCmd.options[0];
-      if (cmd === "inventário"){
+      if (cmd.name === "inventário"){
                   let userdb = await db.findOne({ userID: interaction.member.user.id });
 
         if (!userdb) {
@@ -180,9 +397,181 @@ module.exports = {
           }
         })
       }
+
+        let embed = {
+          title: "Inventário",
+          description: `Clique no menu abaixo para ver seus itens!`,
+          color: 255
+        };
+
+       // console.log(true)
+        await DiscordRequest(CALLBACK.interaction.response(interaction.id, interaction.token),{
+          method: "POST",
+          body: {
+            type: 4,
+            data: {
+              embeds: [embed],
+              components: [{
+                type: 1,
+                components: [{
+                  type: 3,
+                  custom_id: `inventario_${interaction.member.user.id}`,
+                  placeholder: "Inventário",
+                  options: [{
+                    label: "Blocos",
+                    description: "Clique pra selecionar",
+                    value: "0"
+                  },{
+                    label: "Minérios",
+                    description: "Cliaue pra selecionar",
+                    value: "1"
+                  },{
+                    label: "Itens",
+                    description: "Clique pra selecionar",
+                    value: "2"
+                  }]
+                }]
+              }]
+            }
+          }
+        })
       }
     }
 
+    if (subCmd.name === "usar"){
+      let userdb = await db.findOne({ userID: interaction.member.user.id });
+
+        if (!userdb) {
+          let newUser = new db({
+            userID: interaction.member.user.id
+          });
+
+          await newUser.save();
+
+          userdb = await db.findOne({
+            userID: interaction.member.user.id
+          });
+        }
+
+      if (userdb.rpg.mundo === null){
+        return await DiscordRequest(CALLBACK.interaction.response(interaction.id, interaction.token),{
+          method: "POST",
+          body: {
+            type: 4,
+            data: {
+              content: `Você ainda não criou um mundo! Utilize o comando </rpg criar mundo:12345>.`,
+              flags: 64
+            }
+          }
+        })
+      }
+
+      let cmd = subCmd.options[0];
+
+      if (cmd.name === "fornalha"){
+
+        let fornalha = userdb.rpg.itens.fornalha;
+        if (fornalha === "sem"){
+          return await DiscordRequest(CALLBACK.interaction.response(interaction.id, interaction.token),{
+            method: "POST",
+            body: {
+              type: 4,
+              data: {
+                content: `Você não tem uma fornalha! Utilize o comando </rpg criar fornalha:12345> e faça sua fornalha.`,
+                flags: 64
+              }
+            }
+          })
+        } else {
+
+          let minerio = cmd.options[0].value;
+          if (minerio === "cobre"){
+
+            if (userdb.rpg.blocos.cobre === 0){
+              return await DiscordRequest(CALLBACK.interaction.response(interaction.id, interaction.token),{
+            method: "POST",
+            body: {
+              type: 4,
+              data: {
+                content: `Você não tem nenhum cobre! Utilize o comando </rpg explorar caverna:12345>.`,
+                flags: 64
+              }
+            }
+          })
+            } else {
+
+            if (fornalha === "pedra" || fornalha === "cobre" || fornalha === "mithril"){
+
+              userdb.rpg.ingotes.cobre += userdb.rpg.blocos.cobre;
+
+              userdb.rpg.blocos.cobre -= userdb.rpg.blocos.cobre;
+
+              await DiscordRequest(CALLBACK.interaction.response(interaction.id, interaction.token),{
+            method: "POST",
+            body: {
+              type: 4,
+              data: {
+                content: `Você fundiu ${userdb.rpg.ingotes.cobre} cobres!`,
+                flags: 64
+              }
+            }
+          })
+
+              await userdb.save();
+              
+            }
+            }
+          } else if (minerio === "mithril"){
+
+            if (userdb.rpg.blocos.mithril === 0){
+              return await DiscordRequest(CALLBACK.interaction.response(interaction.id, interaction.token),{
+            method: "POST",
+            body: {
+              type: 4,
+              data: {
+                content: `Você não tem nenhum Mithril! Utilize o comando </rpg explorar caverna:12345>.`,
+                flags: 64
+              }
+            }
+          })
+            } else {
+            if (fornalha === "cobre" || fornalha === "mithril"){
+              userdb.rpg.ingotes.mithril += userdb.rpg.blocos.mithril;
+
+              userdb.rpg.blocos.mithril -= userdb.rpg.blocos.mithril;
+
+              await DiscordRequest(CALLBACK.interaction.response(interaction.id, interaction.token),{
+            method: "POST",
+            body: {
+              type: 4,
+              data: {
+                content: `Você fundiu ${userdb.rpg.ingotes.mithril} mithril!`,
+                flags: 64
+              }
+            }
+          })
+
+              await userdb.save();
+            } else {
+
+              await DiscordRequest(CALLBACK.interaction.response(interaction.id, interaction.token),{
+            method: "POST",
+            body: {
+              type: 4,
+              data: {
+                content: `Você não pode fundir mithril com uma fornalha de pedra!`,
+                flags: 64
+              }
+            }
+          })
+
+            }
+            }
+          }
+        }
+      }
+    }
+    
     if (subCmd.name === "explorar"){
             let userdb = await db.findOne({ userID: interaction.member.user.id });
 
@@ -773,6 +1162,91 @@ console.log("start")
              }
            }
          })
+      } else if (cmd.name === "fornalha"){
+                let userdb = await db.findOne({ userID: interaction.member.user.id });
+
+        if (!userdb) {
+          let newUser = new db({
+            userID: interaction.member.user.id
+          });
+
+          await newUser.save();
+
+          userdb = await db.findOne({
+            userID: interaction.member.user.id
+          });
+        }
+
+        if (userdb.rpg.mundo === null){
+        return await DiscordRequest(CALLBACK.interaction.response(interaction.id, interaction.token),{
+          method: "POST",
+          body: {
+            type: 4,
+            data: {
+              content: `Você ainda não criou um mundo! Utilize o comando </rpg criar mundo:12345>.`,
+              flags: 64
+            }
+          }
+        })
+        }
+
+        let fornalha = cmd.options[0].value;
+
+        let fornalhas = {
+          "pedra": () => {
+            return userdb.rpg.blocos.pedra < 9;
+          },
+          "cobre": () => {
+            return userdb.rpg.ingotes.cobre < 9;
+          },
+          "mithril": () => {
+            return userdb.rpg.ingotes.mithril < 9
+          }
+        }
+
+        if (await fornalhas[fornalha]()){
+          return await DiscordRequest(
+          CALLBACK.interaction.response(interaction.id, interaction.token),{ method: "POST", body: {
+            type: 4,
+            data: {
+              content: `Você precisa ter 9 ${fornalha}s!`,
+              flags: 64
+            }
+          }}
+        )
+        } else {
+          let save = {
+            "pedra": async() => {
+              userdb.rpg.itens.fornalha = "pedra";
+              userdb.rpg.blocos.pedra -= 9;
+
+              await userdb.save();
+            },
+            "cobre": async() => {
+              userdb.rpg.itens.fornalha = "cobre";
+              userdb.rpg.ingotes.cobre -= 9;
+
+              await userdb.save();
+            },
+            "mithril": async() => {
+              userdb.rpg.itens.fornalha = "mithril";
+              userdb.rpg.ingotes.mithril -= 9;
+
+              await userdb.save();
+            }
+          };
+
+          await save[fornalha]();
+
+          return await DiscordRequest(
+          CALLBACK.interaction.response(interaction.id, interaction.token),{ method: "POST", body: {
+            type: 4,
+            data: {
+              content: `Você criou uma fornalha de ${fornalha}!`
+            }
+          }}
+        )
+        }
       }
     }
   }

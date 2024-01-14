@@ -26,7 +26,7 @@ const MessageReactionAdd = async(data) => {
     body: {
       embeds: [{
         title: "Log de Reações",
-        description: `Reação ${emoji} adicionada por ${reaction.member.user.global_name}`,
+        description: `Reação ${emoji} adicionada por ${reaction.member.user.username}`,
         color: 255
       }],
       components: [{
@@ -52,7 +52,7 @@ const MessageReactionAdd = async(data) => {
       body: {
         embeds: [{
           title: "Reação Inadequado.",
-          description: `Reação ${reaction.emoji.name} foi adicionada por ${reaction.member.user.global_name} (${reaction.member.user.id}) em <#${reaction.channel_id}>!`,
+          description: `Reação ${reaction.emoji.name} foi adicionada por ${reaction.member.user.username} (${reaction.member.user.id}) em <#${reaction.channel_id}>!`,
           color: 16711680
         }]
       }
@@ -151,7 +151,7 @@ const MessageReactionAdd = async(data) => {
         }
       let embed = {
         author: {
-          name: `${msg.author.global_name}`,
+          name: `${msg.author.username}`,
           icon_url: `https://cdn.discordapp.com/avatars/${msg.author.id}/${msg.author.avatar}.png`
         },
         description: `${msg.content}`,
