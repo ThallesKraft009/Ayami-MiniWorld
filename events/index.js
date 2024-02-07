@@ -10,6 +10,8 @@ const { MessageReactionAdd } = require("./GUILD/messageReactionAdd.js");
 const { MessageReactionRemove } = require("./GUILD/messageReactionRemove.js");
 const { MuralDaVergonha, AutoMod } = require("./GUILD/AuditLog.js")
 const { MemberUpdate } = require("./GUILD/UserUpdate.js")
+const ReactionEvent = require("../functions/reactionEvent.js");
+
 const commandsData = [];
 const commandsJson = [];
 const commands = []
@@ -33,6 +35,9 @@ const isSameCommand = (cmd1, cmd2) => {
         cmd1.type === cmd2.type &&
         ((cmd1.options && cmd1.options.length > 0) ? JSON.stringify(cmd1.options) === JSON.stringify(cmd2.options) : true);
 };
+
+const Evento = new ReactionEvent();
+Evento.start();
 
 module.exports = async (data) => {
     let { t, d } = data;
@@ -63,11 +68,14 @@ module.exports = async (data) => {
 
         
     } else if (t === "MESSAGE_CREATE") {
+       Evento.messageEvent(data.d)
+   //   console.log(data.d.author)
         return Message(data);
     } else if (t === "INTERACTION_CREATE") {
         return Interaction(data, commands);
     } else if (t === "MESSAGE_REACTION_ADD"){
-        return MessageReactionAdd(data);
+        Evento.reaction(data.d);
+       return MessageReactionAdd(data);
     } else if (t === "MESSAGE_REACTION_REMOVE"){
       return MessageReactionRemove(data);
     } else if (t === "GUILD_AUDIT_LOG_ENTRY_CREATE"){

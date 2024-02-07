@@ -10,6 +10,10 @@ module.exports = {
     reaction: {
       remove: (channelId, messageId, emoji) => {
         return `/channels/${channelId}/messages/${messageId}/reactions/${emoji}`
+      },
+
+      add: (channelId, messageId, emoji) => {
+        return `/channels/${channelId}/messages/${messageId}/reactions/${emoji}/@me`
       }
     }
   },

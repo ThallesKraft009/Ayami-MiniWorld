@@ -98,7 +98,9 @@ if (subCmd === "ganhar"){
 
           await newUser.save();
 
-          
+          db = await db.findOne({
+          userID: userId
+        })
         }
 
 

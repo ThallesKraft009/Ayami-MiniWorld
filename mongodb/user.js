@@ -10,6 +10,7 @@ const userset = new Schema({
   msg: {
     de_2024: { type: Number, default: 0 }
   },
+  carnaval_pontos_2024: { type: Number, default: 0 },
   
   pontuacao: { type: Number, default: 0 },
   jogos: { type: Array, default: [] },
