@@ -42,7 +42,7 @@ module.exports = class ReactionEvent {
         method: "PUT"
       });
 
-      await db.set(`msg_${message.channel_id}`, this.emoji);
+      await db.set(`msg_${message.id}`, this.emoji);
 
       this.i = Math.floor(Math.random() * 50) + 1;
     this.emoji = getRandomEmoji(this.i);
@@ -63,6 +63,8 @@ module.exports = class ReactionEvent {
 
     if (userdb) {
       const verification = reaction.member.user.bot || !this.users[reaction.member.user.id];
+
+      if (!await db.get(`msg_${reaction.message_id}`)) return;
 
       if (this.users[reaction.member.user.id]) {
         switch (reaction.emoji.name) {
