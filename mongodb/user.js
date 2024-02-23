@@ -11,6 +11,18 @@ const userset = new Schema({
     de_2024: { type: Number, default: 0 }
   },
   carnaval_pontos_2024: { type: Number, default: 0 },
+  conquistas: {
+    ultimoChannel: { type: String, default: null},
+    pontos: { type: Number, default: 0 },
+    secretas: {
+      "id_05-001": { type: Boolean, default: false },
+      "id_05-002": { type: Boolean, default: false },
+      "id_05-003": { type: Boolean, default: false },
+      "id_05-004": { type: Boolean, default: false },
+      "id_05-005": { type: Boolean, default: false },
+      "id_05-006": { type: Boolean, default: false}
+    }
+  },
   
   pontuacao: { type: Number, default: 0 },
   jogos: { type: Array, default: [] },
@@ -52,14 +64,7 @@ const userset = new Schema({
     snakegame: { type: Number, default: 0 }
   },
 
-  conquistas: {
-    snakegame: { type: Boolean, default: false },
-    estrelinhas: { type: Boolean, default: false },
-    rpg: {
-      picareta: { type: Boolean, default: false },
-      madeira: { type: Boolean, default: false }
-    }
-  },
+  
 
   notificacoes: {
     conquistas: { type: Boolean, default: true }

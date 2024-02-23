@@ -11,7 +11,7 @@ const { MessageReactionRemove } = require("./GUILD/messageReactionRemove.js");
 const { MuralDaVergonha, AutoMod } = require("./GUILD/AuditLog.js")
 const { MemberUpdate } = require("./GUILD/UserUpdate.js")
 const ReactionEvent = require("../functions/reactionEvent.js");
-
+const Achievements = require("../functions/achievements.js");
 const commandsData = [];
 const commandsJson = [];
 const commands = []
@@ -37,7 +37,9 @@ const isSameCommand = (cmd1, cmd2) => {
 };
 
 const Evento = new ReactionEvent();
-Evento.start();
+//Evento.start();
+
+const Conquistas = new Achievements();
 
 module.exports = async (data) => {
     let { t, d } = data;
@@ -68,13 +70,16 @@ module.exports = async (data) => {
 
         
     } else if (t === "MESSAGE_CREATE") {
-       Evento.messageEvent(data.d)
+     //  Evento.messageEvent(data.d);
+
+    //  Conquistas.secretas(0, data.d)
    //   console.log(data.d.author)
         return Message(data);
     } else if (t === "INTERACTION_CREATE") {
         return Interaction(data, commands);
     } else if (t === "MESSAGE_REACTION_ADD"){
-        Evento.reaction(data.d);
+    //  Conquistas.secretas(2, data.d)
+     //   Evento.reaction(data.d);
        return MessageReactionAdd(data);
     } else if (t === "MESSAGE_REACTION_REMOVE"){
       return MessageReactionRemove(data);
