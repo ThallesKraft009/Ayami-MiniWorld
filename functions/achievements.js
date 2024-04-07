@@ -414,9 +414,7 @@ module.exports = class Achievements {
       
     if (reaction.emoji.name === "❤️"){
 
-      
-
-      
+    
 
                  await DiscordRequest(`/channels/${reaction.channel_id}/messages/${reaction.message_id}`,{
       method: "GET"
@@ -613,7 +611,7 @@ userdb.conquista.secretas["id_05-016"] = true;
 
             let ultimoChannel = userdb.conquista.ultimoChannel;
 
-            this.notificar("05-012", ultimoChannel, userId);
+            this.notificar("05-012", ultimoChannel, data.author.id);
 
             userdb.conquista.secretas["id_05-012"] = true;
 
@@ -657,7 +655,7 @@ userdb.conquista.secretas["id_05-016"] = true;
 
             let ultimoChannel = userdb.conquista.ultimoChannel;
 
-            this.notificar("05-011", ultimoChannel, userId);
+            this.notificar("05-011", ultimoChannel, data.author.id);
 
             userdb.conquista.secretas["id_05-011"] = true;
 
@@ -845,7 +843,7 @@ if (data.content.includes(roles.professor)){
 
             let ultimoChannel = userdb.conquista.ultimoChannel;
 
-            this.notificar("05-002", ultimoChannel, userId);
+            this.notificar("05-002", ultimoChannel, data.author.id);
 
             userdb.conquista.secretas["id_05-002"] = true;
 
