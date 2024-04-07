@@ -11,7 +11,7 @@ const userset = new Schema({
     de_2024: { type: Number, default: 0 }
   },
   carnaval_pontos_2024: { type: Number, default: 0 },
-  conquistas: {
+  conquista: {
     ultimoChannel: { type: String, default: null},
     pontos: { type: Number, default: 0 },
     secretas: {
@@ -20,7 +20,32 @@ const userset = new Schema({
       "id_05-003": { type: Boolean, default: false },
       "id_05-004": { type: Boolean, default: false },
       "id_05-005": { type: Boolean, default: false },
-      "id_05-006": { type: Boolean, default: false}
+      "id_05-006": { type: Boolean, default: false},
+      "id_05-011": { type: Boolean, default: false},
+      "id_05-012": { type: Boolean, default: false},
+      "id_05-013": { type: Boolean, default: false},
+      "id_05-014": { type: Boolean, default: false},
+      "id_05-015": { type: Boolean, default: false},
+      "id_05-016": { type: Boolean, default: false},
+    },
+
+    chat_geral: {
+      "id_04-001": { type: Boolean, default: false},
+      "id_04-002": { type: Boolean, default: false},
+      "id_04-003": { type: Boolean, default: false},
+      "id_04-004": { type: Boolean, default: false},
+      "id_04-005": { type: Boolean, default: false}
+    },
+
+    level: {
+      "id_03-001": { type: Boolean, default: false },
+      "id_03-002": { type: Boolean, default: false },
+      "id_03-003": { type: Boolean, default: false },
+      "id_03-004": { type: Boolean, default: false },
+      "id_03-005": { type: Boolean, default: false },
+      "id_03-006": { type: Boolean, default: false },
+      "id_03-007": { type: Boolean, default: false },
+      "id_03-008": { type: Boolean, default: false },
     }
   },
   

@@ -47,7 +47,9 @@ module.exports = {
 
           await newUser.save();
 
-          
+          userdb = await db.findOne({
+          userID: userId
+        })
         }
 
 

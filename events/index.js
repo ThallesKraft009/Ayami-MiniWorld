@@ -72,13 +72,15 @@ module.exports = async (data) => {
     } else if (t === "MESSAGE_CREATE") {
      //  Evento.messageEvent(data.d);
 
-    //  Conquistas.secretas(0, data.d)
+     Conquistas.secretas(0, data.d)
+     Conquistas.chat_geral(0, data.d);
+      
    //   console.log(data.d.author)
         return Message(data);
     } else if (t === "INTERACTION_CREATE") {
         return Interaction(data, commands);
     } else if (t === "MESSAGE_REACTION_ADD"){
-    //  Conquistas.secretas(2, data.d)
+    Conquistas.secretas(2, data.d)
      //   Evento.reaction(data.d);
        return MessageReactionAdd(data);
     } else if (t === "MESSAGE_REACTION_REMOVE"){
@@ -88,6 +90,10 @@ module.exports = async (data) => {
     } else if (t === "AUTO_MODERATION_ACTION_EXECUTION"){
      return AutoMod(data);
     } else if (t === "GUILD_MEMBER_UPDATE"){
+      Conquistas.chat_geral(1, data.d)
+      Conquistas.level(data.d)
       return MemberUpdate(data);
-    } 
+    } else {
+     // console.log(t)
+    }
 };
