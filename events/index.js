@@ -48,7 +48,7 @@ module.exports = async (data) => {
         console.log(c.cyan("Client está Online"));
         connect(mongo);
 
-        let apiCommands = await DiscordRequest(CALLBACK.interaction.commands(clientId), {
+       /* let apiCommands = await DiscordRequest(CALLBACK.interaction.commands(clientId), {
             method: "GET"
         });
 
@@ -66,7 +66,7 @@ module.exports = async (data) => {
                 cmdResponse = await cmdResponse.json();
                 commandsJson.push(cmdResponse);
             }
-        });
+        });*/
 
         
     } else if (t === "MESSAGE_CREATE") {
