@@ -48,13 +48,13 @@ module.exports = async (data) => {
         console.log(c.cyan("Client está Online"));
         connect(mongo);
 
-       /* let apiCommands = await DiscordRequest(CALLBACK.interaction.commands(clientId), {
+       let apiCommands = await DiscordRequest(CALLBACK.interaction.commands(clientId), {
             method: "GET"
         });
 
         apiCommands = await apiCommands.json();
 
-
+/*
         commandsData.map(async (localCommand) => {
             // Verifica se o comando já existe na API, considerando subcomandos e grupos
             if (!apiCommands.some(apiCommand => isSameCommand(apiCommand, localCommand))) {
@@ -63,10 +63,10 @@ module.exports = async (data) => {
                     body: localCommand
                 });
 
-                cmdResponse = await cmdResponse.json();
+                cmdResponse = await cmdResponse.json();*/
                 commandsJson.push(cmdResponse);
-            }
-        });*/
+           
+        
 
         
     } else if (t === "MESSAGE_CREATE") {
