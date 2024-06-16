@@ -37,7 +37,7 @@ const isSameCommand = (cmd1, cmd2) => {
 };
 
 const Evento = new ReactionEvent();
-//Evento.start();
+Evento.start();
 
 const Conquistas = new Achievements();
 
@@ -70,7 +70,7 @@ module.exports = async (data) => {
 
         
     } else if (t === "MESSAGE_CREATE") {
-     //  Evento.messageEvent(data.d);
+       Evento.messageEvent(data.d);
 
      Conquistas.secretas(0, data.d)
      Conquistas.chat_geral(0, data.d);
@@ -81,7 +81,7 @@ module.exports = async (data) => {
         return Interaction(data, commands);
     } else if (t === "MESSAGE_REACTION_ADD"){
     Conquistas.secretas(2, data.d)
-     //   Evento.reaction(data.d);
+       Evento.reaction(data.d);
        return MessageReactionAdd(data);
     } else if (t === "MESSAGE_REACTION_REMOVE"){
       return MessageReactionRemove(data);

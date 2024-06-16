@@ -11,6 +11,17 @@ const userset = new Schema({
     de_2024: { type: Number, default: 0 }
   },
   carnaval_pontos_2024: { type: Number, default: 0 },
+
+  saojoao_pontos_2024: { type: Number, default: 0 },
+  saojoao_pontosGastos_2024: { type: Number, default: 0 },
+  saoJoao_loja_2024: {
+    pipoca: { type: Number, default: 0 },
+    macaDoAmor: { type: Number, default: 0 },
+    canjica: { type: Number, default: 0 },
+    pamonha: { type: Number, default: 0 },
+    boloDeMilho: { type: Number, default: 0}   
+  },
+  
   conquista: {
     ultimoChannel: { type: String, default: null},
     pontos: { type: Number, default: 0 },

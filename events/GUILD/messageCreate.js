@@ -23,6 +23,8 @@ const Message = async(m) => {
   userdb.msg.de_2024 = userdb.msg.de_2024 + 1;
   userdb.conquista.ultimoChannel = message.channel_id;
 
+  
+
        await userdb.save();
 }
 

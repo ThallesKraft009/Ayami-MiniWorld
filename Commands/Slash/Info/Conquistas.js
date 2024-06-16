@@ -57,56 +57,10 @@ module.exports = {
     }
 
     if (interaction.data.options[0].name === "ver"){
-    let achievements = new Achievements();
+    
 
-    const conquistas = [];
-
-    // Adicionar todas as conquistas secretas à lista de conquistas
-    Object.keys(userdb.conquista.secretas).forEach(conquista => {
-      if (userdb.conquista.secretas[conquista] === true) {
-        conquistas.push(conquista);
-      }
-    });
-
-    // Adicionar todas as conquistas do chat geral à lista de conquistas
-    Object.keys(userdb.conquista.chat_geral).forEach(conquista => {
-      if (userdb.conquista.chat_geral[conquista] === true) {
-        conquistas.push(conquista);
-      }
-    });
-
-    // Adicionar todas as conquistas de nível à lista de conquistas
-    Object.keys(userdb.conquista.level).forEach(conquista => {
-      if (userdb.conquista.level[conquista] === true) {
-        conquistas.push(conquista);
-      }
-    });
-
-    // Remover o prefixo "id_" de cada conquista na lista
-    const conquistasFormatadas = conquistas.map(conquista => conquista.replace("id_", ""));
-
-   // console.log("Conquistas do usuário:", conquistasFormatadas);
-
-    console.log(conquistasFormatadas.map(c => lista[c]));
-
-    let embed = {
-      title: `Pontuação total: ${userdb.conquista.pontos}`,
-      description: `**Conquistas**:\n${conquistasFormatadas.map(c => `${lista[c]}\n`)}`,
-      color: 255
-    }
-
-    await DiscordRequest(
-        CALLBACK.interaction.response(
-          interaction.id, interaction.token
-        ), { 
-      method: 'POST',
-      body: {
-        type: 4,
-        data: {
-          embeds: [embed]
-        }
-      }
-        })
+    
+   
   } else {
 
 

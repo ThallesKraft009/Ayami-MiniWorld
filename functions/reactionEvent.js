@@ -3,6 +3,9 @@ const CALLBACK = require("../settings/callback.js");
 const { QuickDB } = require("quick.db");
 const db = new QuickDB();
 const mongodb = require("../mongodb/user.js");
+let cargo = "1246804060338913320";
+
+
 
 module.exports = class ReactionEvent {
   constructor() {
@@ -68,21 +71,31 @@ module.exports = class ReactionEvent {
 
       if (this.users[reaction.member.user.id]) {
         switch (reaction.emoji.name) {
-          case "💃":
-            userdb.carnaval_pontos_2024 += 1;
+          case "🍬":
+            userdb.saojoao_pontos_2024 += 400;
             break;
-          case "🪇":
-            userdb.carnaval_pontos_2024 += 3;
+          case "🎆":
+            userdb.saojoao_pontos_2024 += 500;
             break;
-          case "🎉":
-            userdb.carnaval_pontos_2024 += 5;
+          case "🔥":
+              userdb.saojoao_pontos_2024 += 700;
             break;
-          case "🎭":
-            userdb.carnaval_pontos_2024 += 10;
+          case "🌽":
+              userdb.saojoao_pontos_2024 += 1000;
             break;
           default:
             break;
         }
+
+        let user = await DiscordRequest(`/guilds/751534674723078174/members/${reaction.member.user.id}`,{
+         method: "GET"
+       });
+
+        user = await user.json();
+
+       if (user.roles.includes(cargo)){
+         userdb.saojoao_pontos_2024 = userdb.saojoao_pontos_2024 * 1.2;
+       }
 
         await userdb.save();
         userdb = await mongodb.findOne({
@@ -97,12 +110,12 @@ module.exports = class ReactionEvent {
 
 function getRandomEmoji(randomNum) {
   if (randomNum < 20) {
-    return '💃'; // 40% chance
+    return '🍬'; // 40% chance
   } else if (randomNum < 30) {
-    return '🪇'; // 30% chance
+    return '🎆'; // 30% chance
   } else if (randomNum < 40) {
-    return '🎉'; // 20% chance
+    return '🔥'; // 20% chance
   } else {
-    return '🎭'; // 10% chance
+    return '🌽'; // 10% chance
   }
 }

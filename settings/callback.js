@@ -46,9 +46,11 @@ module.exports = {
       return `/guilds/${guildId}/roles`
     },
 
-    roleGet: (guildId, roleId) => {
+    roleAdd: (guildId, roleId) => {
       return ``
-    }
+    },
+
+    
   },
 
    /////////////////// INTERACTION ////////
