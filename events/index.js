@@ -64,7 +64,7 @@ module.exports = async (data) => {
                 });
 
                 cmdResponse = await cmdResponse.json();*/
-                commandsJson.push(cmdResponse);
+                commandsJson.push(apiCommands);
            
         
 
