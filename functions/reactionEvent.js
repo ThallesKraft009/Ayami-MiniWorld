@@ -18,7 +18,7 @@ module.exports = class ReactionEvent {
   }
 
   async start() {
-    this.i = Math.floor(Math.random() * 50) + 1;
+    this.i = Math.floor(Math.random() * 24) + 1;
     this.emoji = getRandomEmoji(this.i);
     this.time = {};
    // console.log("Precisa de:", this.i, " mensagens!");
@@ -47,7 +47,7 @@ module.exports = class ReactionEvent {
 
       await db.set(`msg_${message.id}`, this.emoji);
 
-      this.i = Math.floor(Math.random() * 50) + 1;
+      this.i = Math.floor(Math.random() * 24) + 1;
     this.emoji = getRandomEmoji(this.i);
     this.time = {};
       console.log(this);
@@ -109,11 +109,11 @@ module.exports = class ReactionEvent {
 };
 
 function getRandomEmoji(randomNum) {
-  if (randomNum < 20) {
+  if (randomNum < 10) {
     return '🍬'; // 40% chance
-  } else if (randomNum < 30) {
+  } else if (randomNum < 15) {
     return '🎆'; // 30% chance
-  } else if (randomNum < 40) {
+  } else if (randomNum < 20) {
     return '🔥'; // 20% chance
   } else {
     return '🌽'; // 10% chance
