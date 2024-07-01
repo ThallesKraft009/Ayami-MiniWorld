@@ -57,7 +57,15 @@ let command = []
 let options = []
 
 try {
-    cmd.run(data.d);
+   await DiscordRequest(CALLBACK.interaction.response(data.d.id, data.d.token),{
+     method: "POST",
+     body: {
+       type: 4,
+       data: {
+         content: "Os comandos não estão disponíveis pra uma atualização que sairá em 01/08/2024."
+       }
+     }
+   })
 } catch (err) {
     console.log(err);
 }
